@@ -10,3 +10,5 @@ const connection = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 
 });
+
+module.exports = connection;
