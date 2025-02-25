@@ -7,7 +7,7 @@ Esta é uma API RESTful para manipulação de dados financeiros, incluindo moeda
 - **Express.js**
 - **MySQL**
 - **dotenv** (para variáveis de ambiente)
-- **Insomnia** (usado para testar a API)
+- **Insomnia** (QA test da API)
 
 ## Instalação
 
