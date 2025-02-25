@@ -1,0 +1,38 @@
+CREATE DATABASE IF NOT EXISTS financial_data;
+
+USE financial_data;
+
+CREATE TABLE IF NOT EXISTS currencies (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  type VARCHAR(10) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS exchange_rates (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  daily_variation DECIMAL(5,2) NOT NULL,
+  daily_rate DECIMAL(10,2) NOT NULL,
+  currency_id INT NOT NULL,
+  FOREIGN KEY (currency_id) REFERENCES currencies(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS investors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS investments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  initial_amount DECIMAL(15,2) NOT NULL,
+  months INT NOT NULL,
+  interest_rate DECIMAL(5,2) NOT NULL,
+  final_amount DECIMAL(15,2) NOT NULL,
+  currency_id INT NOT NULL,
+  investor_id INT NOT NULL,
+  FOREIGN KEY (currency_id) REFERENCES currencies(id),
+  FOREIGN KEY (investor_id) REFERENCES investors(id) ON DELETE CASCADE
+);
+
+SHOW TABLES;
